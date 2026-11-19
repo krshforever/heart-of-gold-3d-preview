@@ -1,442 +1,356 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Heart of Gold Jewels | New Delhi — Est. 1999</title>
-<style>
-:root{--bg:#04110b;--emerald:#0a3b27;--gold:#d4af37;--gold-light:#f5e19c;--text:#f5f2eb;--muted:#b9c4bc;--glass:rgba(7,26,18,0.58);--border:rgba(212,175,55,0.28)}
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Heart of Gold Jewels | New Delhi — Est. 1999</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"><style>
+:root{--bg:#070d0a;--bg2:#0b1410;--gold:#d4af37;--gold-lt:#f3e5ab;--hair:rgba(212,175,55,.22);--hair-hi:rgba(212,175,55,.55);--text:#f5f2eb;--muted:#9ea8a2}
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{background:var(--bg);color:var(--text);font-family:'Optima','Segoe UI',system-ui,-apple-system,sans-serif;overflow-x:hidden;scroll-behavior:auto}
-h1,h2,h3,h4,.serif,.brand-title,.card-title,.step-num,.testimonial-quote{font-family:'Didot','Palatino Linotype','Book Antiqua',Georgia,serif;letter-spacing:0.02em}
-#webgl-canvas{position:fixed;inset:0;width:100vw;height:100vh;z-index:0;pointer-events:none}
-.nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:1.1rem 5vw;background:linear-gradient(180deg,rgba(4,17,11,0.88),rgba(4,17,11,0));backdrop-filter:blur(8px);border-bottom:1px solid rgba(212,175,55,0.12)}
+html{scroll-behavior:smooth;background:var(--bg);color:var(--text)}
+body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;font-weight:300;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,.serif{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;letter-spacing:.01em}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font-family:inherit;color:inherit}
+#dust-canvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+#cursor-aura{position:fixed;width:440px;height:440px;border-radius:50%;pointer-events:none;z-index:2;background:radial-gradient(circle,rgba(243,229,171,.09) 0%,rgba(212,175,55,.03) 38%,transparent 70%);transform:translate(-50%,-50%);transition:opacity .3s ease}
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:1.1rem 5vw;background:rgba(7,13,10,.78);backdrop-filter:blur(14px);border-bottom:1px solid var(--hair)}
 .brand{display:flex;flex-direction:column}
-.brand-title{font-size:1.45rem;font-weight:600;color:var(--gold-light);letter-spacing:0.12em;text-transform:uppercase}
-.brand-sub{font-size:0.65rem;letter-spacing:0.25em;color:var(--muted);text-transform:uppercase}
-.nav-links{display:flex;gap:1.6rem;align-items:center}
-.nav-links a{color:var(--text);text-decoration:none;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;opacity:0.82;transition:color .3s,opacity .3s;cursor:pointer}
-.nav-links a:hover{color:var(--gold-light);opacity:1}
-.btn-gold{background:linear-gradient(135deg,#d4af37,#f5e19c,#b8860b);color:#06140d;border:none;padding:0.75rem 1.5rem;font-size:0.72rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;border-radius:999px;cursor:pointer;transition:transform .25s,box-shadow .25s}
-.btn-gold:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(212,175,55,0.35)}
-.btn-outline{background:transparent;color:var(--gold-light);border:1px solid var(--border);padding:0.7rem 1.4rem;font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;border-radius:999px;cursor:pointer;transition:all .25s}
-.btn-outline:hover{border-color:var(--gold);background:rgba(212,175,55,0.12)}
-.room-indicator{position:fixed;right:2vw;top:50%;transform:translateY(-50%);z-index:40;display:flex;flex-direction:column;gap:0.9rem}
-.room-dot{width:10px;height:10px;border-radius:50%;border:1px solid var(--gold);background:transparent;cursor:pointer;transition:all .3s}
-.room-dot.active{background:var(--gold-light);box-shadow:0 0 12px var(--gold);transform:scale(1.3)}
+.brand-name{font-family:'Cormorant Garamond',serif;font-size:1.35rem;letter-spacing:.18em;color:var(--gold-lt);text-transform:uppercase}
+.brand-sub{font-size:.62rem;letter-spacing:.28em;color:var(--muted);text-transform:uppercase;margin-top:2px}
+.nav-links{display:flex;gap:2rem;align-items:center}
+.nav-links a{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);transition:color .25s}
+.nav-links a:hover{color:var(--gold-lt)}
+.btn-gold{background:linear-gradient(135deg,#d4af37,#f3e5ab,#b8860b);color:#070d0a;border:none;padding:.8rem 1.7rem;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500;cursor:pointer;transition:transform .25s,box-shadow .25s}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(212,175,55,.28)}
+.btn-hair{background:transparent;border:1px solid var(--hair-hi);color:var(--gold-lt);padding:.8rem 1.7rem;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:background .25s,border-color .25s}
+.btn-hair:hover{background:rgba(212,175,55,.08);border-color:var(--gold)}
 main{position:relative;z-index:10}
-section.room{min-height:100vh;padding:7rem 6vw 5rem;display:flex;flex-direction:column;justify-content:center}
-.eyebrow{font-size:0.72rem;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem}
-.hero-title{font-size:clamp(2.8rem,6.5vw,5.4rem);line-height:1.02;font-weight:500;color:var(--text);max-width:780px}
-.hero-title span{color:var(--gold-light);font-style:italic}
-.hero-desc{margin-top:1.4rem;max-width:540px;color:var(--muted);line-height:1.7;font-size:0.95rem;font-weight:300}
-.hero-actions{margin-top:2.2rem;display:flex;gap:1rem;flex-wrap:wrap}
-.section-head{margin-bottom:2.8rem;max-width:680px}
-.section-head h2{font-size:clamp(2.1rem,4vw,3.4rem);color:var(--gold-light);font-weight:500}
-.section-head p{margin-top:0.7rem;color:var(--muted);line-height:1.65;font-size:0.92rem}
-.grid-4{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem}
-.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.6rem}
-.tilt-card{position:relative;background:var(--glass);border:1px solid var(--border);border-radius:18px;padding:1.8rem;backdrop-filter:blur(16px);transform-style:preserve-3d;transition:border-color .3s,box-shadow .3s;overflow:hidden}
-.tilt-card::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(245,225,156,0.18),transparent 60%);pointer-events:none;opacity:0;transition:opacity .3s}
-.tilt-card:hover::before{opacity:1}
-.tilt-card:hover{border-color:rgba(245,225,156,0.65);box-shadow:0 20px 45px rgba(0,0,0,0.55)}
-.card-tag{font-size:0.65rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:0.6rem}
-.card-title{font-size:1.65rem;color:var(--text);margin-bottom:0.6rem}
-.card-text{font-size:0.85rem;color:var(--muted);line-height:1.6}
-.filter-bar{display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:2rem}
-.filter-btn{background:rgba(7,26,18,0.65);color:var(--muted);border:1px solid var(--border);padding:0.5rem 1.15rem;border-radius:999px;font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;transition:all .25s}
-.filter-btn.active,.filter-btn:hover{background:var(--gold);color:#04110b;border-color:var(--gold);font-weight:600}
-.masterpiece-meta{margin-top:1rem;padding-top:0.9rem;border-top:1px solid rgba(212,175,55,0.18);display:flex;justify-content:space-between;align-items:center;font-size:0.75rem;color:var(--gold-light)}
-.step-num{font-size:2.4rem;color:rgba(212,175,55,0.45);line-height:1;margin-bottom:0.5rem}
-.testimonial-box{margin-top:2.5rem;max-width:780px;background:linear-gradient(135deg,rgba(10,59,39,0.6),rgba(4,17,11,0.82));border:1px solid var(--border);border-radius:20px;padding:2rem 2.4rem;backdrop-filter:blur(16px)}
-.testimonial-quote{font-size:1.45rem;font-style:italic;line-height:1.55;color:var(--text)}
-.testimonial-author{margin-top:1rem;font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-light)}
-.salon-card{max-width:760px;background:var(--glass);border:1px solid var(--border);border-radius:22px;padding:2.5rem;backdrop-filter:blur(18px)}
-.salon-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;margin:1.8rem 0}
-.salon-item label{display:block;font-size:0.65rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:0.35rem}
-.salon-item p,.salon-item a{font-size:0.9rem;color:var(--text);text-decoration:none;line-height:1.55}
-.modal-backdrop{position:fixed;inset:0;z-index:100;background:rgba(2,10,6,0.82);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;padding:1.5rem}
-.modal-backdrop.open{display:flex}
-.modal-panel{width:100%;max-width:540px;background:#071b12;border:1px solid var(--gold);border-radius:20px;padding:2.2rem;position:relative;box-shadow:0 28px 65px rgba(0,0,0,0.75)}
-.modal-close{position:absolute;top:1.1rem;right:1.2rem;background:none;border:none;color:var(--gold-light);font-size:1.5rem;cursor:pointer}
-.form-group{margin-bottom:1rem}
-.form-group label{display:block;font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.35rem}
-.form-group input,.form-group select{width:100%;background:rgba(4,17,11,0.85);border:1px solid var(--border);border-radius:10px;padding:0.75rem 0.9rem;color:var(--text);font-family:inherit;font-size:0.85rem}
-footer{position:relative;z-index:10;padding:2.2rem 6vw;border-top:1px solid rgba(212,175,55,0.16);display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:0.75rem;color:var(--muted);background:rgba(4,17,11,0.85)}
-@media(max-width:768px){.nav-links a{display:none}.room-indicator{display:none}}
-</style>
-</head>
+.wrap{max-width:1320px;margin:0 auto;padding:0 5vw}
+.eyebrow{font-size:.68rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.9rem}
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;border-bottom:1px solid var(--hair)}
+.hero-bg{position:absolute;inset:-4%;z-index:0;overflow:hidden}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center;transform:scale(1.06);transition:transform .12s ease-out;filter:brightness(.76) contrast(1.06)}
+.hero-vignette{position:absolute;inset:0;z-index:1;background:linear-gradient(95deg,rgba(7,13,10,.94) 0%,rgba(7,13,10,.68) 48%,rgba(7,13,10,.28) 100%),linear-gradient(180deg,rgba(7,13,10,.4) 0%,transparent 30%,rgba(7,13,10,.95) 100%)}
+.hero-content{position:relative;z-index:2;max-width:680px;padding:7rem 0 5rem}
+.hero h1{font-size:clamp(2.8rem,5.5vw,5rem);line-height:1.02;color:var(--text);margin-bottom:1.4rem}
+.hero h1 em{color:var(--gold-lt);font-style:italic}
+.hero p{color:var(--muted);font-size:.98rem;max-width:500px;margin-bottom:2.2rem}
+.hero-cta{display:flex;gap:1rem;flex-wrap:wrap}
+.sec{padding:6.5rem 0;border-bottom:1px solid var(--hair)}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;margin-bottom:3.5rem;flex-wrap:wrap}
+.sec-head h2{font-size:clamp(2rem,3.6vw,3.2rem);color:var(--gold-lt);line-height:1.08}
+.sec-head p{max-width:440px;color:var(--muted);font-size:.9rem}
+.pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));border-top:1px solid var(--hair);border-left:1px solid var(--hair)}
+.pillar{padding:2rem 1.6rem;border-right:1px solid var(--hair);border-bottom:1px solid var(--hair);background:rgba(11,20,16,.55);transition:background .3s}
+.pillar:hover{background:rgba(212,175,55,.04)}
+.pillar-num{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--gold);margin-bottom:.7rem;display:block}
+.pillar h3{font-size:1.25rem;color:var(--text);margin-bottom:.4rem}
+.pillar p{font-size:.82rem;color:var(--muted)}
+.collections{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem}
+.col-card{border:1px solid var(--hair);padding:2.4rem 2rem;background:linear-gradient(180deg,rgba(11,20,16,.7),rgba(7,13,10,.95));position:relative;transition:border-color .35s,transform .35s}
+.col-card:hover{border-color:var(--gold);transform:translateY(-4px)}
+.col-idx{font-family:'Cormorant Garamond',serif;font-size:2.4rem;color:rgba(212,175,55,.35);line-height:1;margin-bottom:1.2rem;display:block}
+.col-card h3{font-size:1.7rem;color:var(--gold-lt);margin-bottom:.6rem}
+.col-card p{font-size:.86rem;color:var(--muted);margin-bottom:1.4rem}
+.col-tag{font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.lookbook-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:2.5rem;align-items:start}
+.look-card{grid-column:span 6;perspective:1100px;cursor:pointer}
+.look-card.wide{grid-column:span 7}
+.look-card.tall{grid-column:span 5;margin-top:4rem}
+.look-frame{position:relative;border:1px solid var(--hair);padding:14px;background:var(--bg2);transform-style:preserve-3d;transition:transform .14s ease-out,border-color .3s}
+.look-card:hover .look-frame{border-color:var(--hair-hi)}
+.look-img-wrap{position:relative;overflow:hidden;aspect-ratio:4/5;background:#050907}
+.look-card.wide .look-img-wrap{aspect-ratio:5/4}
+.look-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
+.look-card:hover .look-img-wrap img{transform:scale(1.04)}
+.sheen{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(243,229,171,.24) 0%,transparent 56%)}
+.look-card:hover .sheen{opacity:1}
+.look-meta{padding:1.2rem .3rem .3rem;display:flex;justify-content:space-between;align-items:flex-end;gap:1rem}
+.look-meta h3{font-size:1.5rem;color:var(--gold-lt)}
+.look-meta span{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.25rem}
+.look-more{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--hair);padding-bottom:2px;white-space:nowrap}
+.bespoke-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:4rem;align-items:start}
+.salon-frame{border:1px solid var(--hair);padding:14px;background:var(--bg2);position:sticky;top:6.5rem}
+.salon-frame img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block}
+.salon-cap{padding-top:1rem;font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.steps{border-top:1px solid var(--hair)}
+.step{padding:1.8rem 0;border-bottom:1px solid var(--hair);display:grid;grid-template-columns:64px 1fr;gap:1rem;align-items:start}
+.step-n{font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:var(--gold)}
+.step h3{font-size:1.35rem;color:var(--gold-lt);margin-bottom:.35rem}
+.step p{font-size:.88rem;color:var(--muted)}
+.quote-sec{padding:6rem 0;border-bottom:1px solid var(--hair);text-align:center}
+.quote-box{max-width:780px;margin:0 auto;padding:3rem 2rem;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+.quote-text{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,2.7vw,2.25rem);font-style:italic;color:var(--text);line-height:1.4;margin-bottom:1.4rem}
+.quote-author{font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold)}
+.showroom-grid{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--hair)}
+.showroom-box{padding:3.2rem;border-right:1px solid var(--hair)}
+.journal-box{padding:3.2rem;display:flex;flex-direction:column;justify-content:space-between}
+.info-list{margin:1.8rem 0 2.2rem;display:grid;gap:1rem}
+.info-row{border-bottom:1px solid var(--hair);padding-bottom:.8rem}
+.info-lbl{font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.2rem}
+.info-val{font-size:.94rem;color:var(--text)}
+.journal-form{display:flex;gap:.8rem;margin-top:1.5rem;flex-wrap:wrap}
+.input-hair{flex:1;min-width:210px;background:rgba(255,255,255,.02);border:1px solid var(--hair);padding:.85rem 1rem;font-size:.86rem;color:var(--text);outline:none;transition:border-color .25s}
+.input-hair:focus{border-color:var(--gold)}
+.form-msg{margin-top:.9rem;font-size:.82rem;color:var(--gold-lt);min-height:1.2em}
+footer{padding:2.5rem 5vw;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;font-size:.74rem;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+.modal{position:fixed;inset:0;z-index:100;background:rgba(4,8,6,.86);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;padding:1.5rem}
+.modal.open{display:flex}
+.modal-card{background:var(--bg2);border:1px solid var(--hair-hi);max-width:860px;width:100%;max-height:90vh;overflow-y:auto;position:relative}
+.modal-close{position:absolute;top:1rem;right:1.2rem;background:none;border:none;color:var(--gold-lt);font-size:1.6rem;cursor:pointer;line-height:1}
+.piece-layout{display:grid;grid-template-columns:1fr 1fr}
+.piece-layout img{width:100%;height:100%;min-height:340px;object-fit:cover;display:block}
+.piece-body{padding:2.6rem}
+.piece-body h3{font-size:2rem;color:var(--gold-lt);margin-bottom:.7rem}
+.piece-specs{margin:1.4rem 0;border-top:1px solid var(--hair)}
+.piece-specs div{display:flex;justify-content:space-between;padding:.65rem 0;border-bottom:1px solid var(--hair);font-size:.84rem}
+.consult-body{padding:2.8rem;max-width:560px;margin:0 auto}
+.consult-body h3{font-size:2.1rem;color:var(--gold-lt);margin-bottom:.5rem}
+.field-grid{display:grid;gap:1rem;margin-top:1.5rem}
+@media(max-width:900px){.nav-links{display:none}.look-card,.look-card.wide,.look-card.tall{grid-column:span 12;margin-top:0}.bespoke-grid,.showroom-grid,.piece-layout{grid-template-columns:1fr}.showroom-box{border-right:none;border-bottom:1px solid var(--hair)}.salon-frame{position:static}}
+</style></head>
 <body>
-<canvas id="webgl-canvas"></canvas>
-
+<canvas id="dust-canvas"></canvas>
+<div id="cursor-aura"></div>
 <header class="nav">
-  <div class="brand">
-    <span class="brand-title">Heart of Gold Jewels</span>
-    <span class="brand-sub">New Delhi • Est. 1999</span>
-  </div>
-  <nav class="nav-links">
-    <a onclick="scrollToRoom(0)">Sanctuary</a>
-    <a onclick="scrollToRoom(1)">Collections</a>
-    <a onclick="scrollToRoom(2)">Masterpieces</a>
-    <a onclick="scrollToRoom(3)">Atelier</a>
-    <a onclick="scrollToRoom(4)">GK-1 Salon</a>
-    <button class="btn-gold" onclick="openBookingModal()">Book Salon</button>
-  </nav>
+<a href="#top" class="brand"><span class="brand-name">Heart of Gold</span><span class="brand-sub">New Delhi &bull; Est. 1999</span></a>
+<nav class="nav-links"><a href="#pillars">Assurance</a><a href="#collections">Collections</a><a href="#lookbook">Lookbook</a><a href="#bespoke">Bespoke</a><a href="#salon">Salon</a></nav>
+<button class="btn-hair" onclick="openConsult('General Private Consultation')">Book Consultation</button>
 </header>
-
-<div class="room-indicator" aria-label="Camera Rooms">
-  <button class="room-dot active" onclick="scrollToRoom(0)" title="Room 1: Sanctuary Hero"></button>
-  <button class="room-dot" onclick="scrollToRoom(1)" title="Room 2: 4 Collections"></button>
-  <button class="room-dot" onclick="scrollToRoom(2)" title="Room 3: 5 Signature Masterpieces"></button>
-  <button class="room-dot" onclick="scrollToRoom(3)" title="Room 4: 6-Step Bespoke Atelier"></button>
-  <button class="room-dot" onclick="scrollToRoom(4)" title="Room 5: GK-1 Private Salon"></button>
+<main id="top">
+<section class="hero">
+<div class="hero-bg"><img id="hero-img" src="https://heartofgoldjewels.com/assets/emerald-royal-choker-BByrMlcu.jpg" alt="Heart of Gold Emerald and Diamond Necklace"></div>
+<div class="hero-vignette"></div>
+<div class="wrap hero-content">
+<span class="eyebrow">Haute Joaillerie &bull; Greater Kailash-1, New Delhi</span>
+<h1>Heirlooms Born of <em>Emerald</em> &amp; Light</h1>
+<p>Since 1999, Heart of Gold Jewels has sculpted rare Zambian emeralds, fine diamonds, and 22K gold into intimate works of art in our New Delhi maison.</p>
+<div class="hero-cta">
+<a href="#lookbook" class="btn-gold">Explore Lookbook</a>
+<button class="btn-hair" onclick="openConsult('Hero Emerald High Jewellery')">Book Private Consultation</button>
 </div>
-
-<main>
-  <section class="room" id="room-0" data-room="0">
-    <div class="eyebrow">High Jewellery Sanctuary • Greater Kailash-1, New Delhi</div>
-    <h1 class="hero-title">Where <span>Zambian Emeralds</span> Meet Sovereign 22K Gold</h1>
-    <p class="hero-desc">Established in 1999 in the heart of New Delhi, Heart of Gold Jewels crafts heirloom Polki, Kundan, and contemporary emerald-and-gold masterpieces sculpted for generations.</p>
-    <div class="hero-actions">
-      <button class="btn-gold" onclick="scrollToRoom(2)">Explore Masterpieces</button>
-      <button class="btn-outline" onclick="openBookingModal()">Private Salon Appointment</button>
-    </div>
-  </section>
-
-  <section class="room" id="room-1" data-room="1">
-    <div class="section-head">
-      <div class="eyebrow">Room II • The Four Pillars</div>
-      <h2>Curated Heritage Collections</h2>
-      <p>Each collection balances architectural 22K goldsmithing with hand-selected natural gemstones, engineered for luminous depth and effortless poise.</p>
-    </div>
-    <div class="grid-4">
-      <div class="tilt-card"><div class="card-tag">Collection 01</div><div class="card-title">Zambian Emerald Vault</div><p class="card-text">Octagonal step-cut and cabochon emeralds framed in brushed 22K yellow gold and micro-pavé diamonds.</p></div>
-      <div class="tilt-card"><div class="card-tag">Collection 02</div><div class="card-title">Rani Mahal Polki</div><p class="card-text">Uncut syndicate Jadau diamonds set in 24K kundan foil with reverse meenakari enamelwork.</p></div>
-      <div class="tilt-card"><div class="card-tag">Collection 03</div><div class="card-title">Nizam Heritage Kundan</div><p class="card-text">Royal Deccan-inspired bridal chokers, satladas, and chandbalis with Basra-style pearl drops.</p></div>
-      <div class="tilt-card"><div class="card-tag">Collection 04</div><div class="card-title">Modern Atelier 22K</div><p class="card-text">Fluid sculptural cuffs, architectural solitaire rings, and convertible day-to-gala silhouettes.</p></div>
-    </div>
-  </section>
-
-  <section class="room" id="room-2" data-room="2">
-    <div class="section-head">
-      <div class="eyebrow">Room III • Vault Editions</div>
-      <h2>Five Signature Masterpieces</h2>
-      <p>Filter our signature creations by category and inspect full gemological provenance.</p>
-    </div>
-    <div class="filter-bar">
-      <button class="filter-btn active" onclick="filterMasterpieces('all',this)">All (5)</button>
-      <button class="filter-btn" onclick="filterMasterpieces('Necklaces',this)">Necklaces</button>
-      <button class="filter-btn" onclick="filterMasterpieces('Earrings',this)">Earrings</button>
-      <button class="filter-btn" onclick="filterMasterpieces('Rings',this)">Rings</button>
-      <button class="filter-btn" onclick="filterMasterpieces('Bridal',this)">Bridal</button>
-    </div>
-    <div class="grid-3" id="masterpieces-grid"></div>
-  </section>
-
-  <section class="room" id="room-3" data-room="3">
-    <div class="section-head">
-      <div class="eyebrow">Room IV • Custom Commission</div>
-      <h2>The 6-Step Bespoke Atelier</h2>
-      <p>From loose stone curation to final hallmarking, every bespoke commission is personally guided by our master karigars.</p>
-    </div>
-    <div class="grid-3">
-      <div class="tilt-card"><div class="step-num">01</div><div class="card-title">Private Consultation</div><p class="card-text">One-on-one session at our GK-1 salon or virtually to define occasion, silhouette, and heirloom intent.</p></div>
-      <div class="tilt-card"><div class="step-num">02</div><div class="card-title">Gemstone Curation</div><p class="card-text">Hand-selection of certified Zambian emeralds, Burmese rubies, and uncut Polki parcels.</p></div>
-      <div class="tilt-card"><div class="step-num">03</div><div class="card-title">Gouache &amp; 3D CAD</div><p class="card-text">Traditional hand-painted gouache rendering paired with precision 3D proportion modeling.</p></div>
-      <div class="tilt-card"><div class="step-num">04</div><div class="card-title">Wax &amp; Fit Trial</div><p class="card-text">Ergonomic neck-curve and ring-balance trial before gold casting begins.</p></div>
-      <div class="tilt-card"><div class="step-num">05</div><div class="card-title">Karigar Goldsmithing</div><p class="card-text">Hand-forged 22K gold articulation, kundan setting, and reverse meenakari detailing.</p></div>
-      <div class="tilt-card"><div class="step-num">06</div><div class="card-title">Certification &amp; Handover</div><p class="card-text">BIS hallmarking, independent lab certification, and velvet vault presentation.</p></div>
-    </div>
-    <div class="testimonial-box tilt-card">
-      <div class="testimonial-quote">“Heart of Gold Jewels transformed my grandmother’s heirloom emeralds into a modern bridal choker that felt effortlessly light yet regal. Their attention to stone matching and reverse meenakari is unmatched in New Delhi.”</div>
-      <div class="testimonial-author">— Neha A., Bespoke Bridal Patron • New Delhi</div>
-    </div>
-  </section>
-
-  <section class="room" id="room-4" data-room="4">
-    <div class="section-head">
-      <div class="eyebrow">Room V • Visit The Flagship</div>
-      <h2>GK-1 Private Salon</h2>
-      <p>Experience our vault in complete privacy at M Block Market, Greater Kailash-1.</p>
-    </div>
-    <div class="salon-card tilt-card">
-      <div class="card-tag">New Delhi Flagship • Est. 1999</div>
-      <div class="card-title">Heart of Gold Jewels Salon</div>
-      <div class="salon-grid">
-        <div class="salon-item"><label>Address</label><p>M 73, Shop 5, M Block Market,<br/>Greater Kailash-1, New Delhi 110048</p></div>
-        <div class="salon-item"><label>Salon Hours</label><p>Wed–Mon: 11:30 – 19:30<br/>Tuesday: Closed</p></div>
-        <div class="salon-item"><label>Direct Concierge</label><p><a href="tel:+919811112990">+91 98111 12990</a><br/><a href="mailto:info@heartofgoldjewels.com">info@heartofgoldjewels.com</a></p></div>
-      </div>
-      <button class="btn-gold" onclick="openBookingModal()">Reserve Private Viewing</button>
-    </div>
-  </section>
+</div>
+</section>
+<section id="pillars" class="sec">
+<div class="wrap">
+<div class="sec-head"><div><span class="eyebrow">The Maison Standard</span><h2>Six Pillars of Assurance</h2></div><p>Every creation is accompanied by independent gemological certification and our lifelong commitment to stewardship.</p></div>
+<div class="pillars">
+<div class="pillar"><span class="pillar-num">01</span><h3>BIS Hallmarked Gold</h3><p>100% certified 22K and 18K gold purity with transparent assay verification.</p></div>
+<div class="pillar"><span class="pillar-num">02</span><h3>IGI &amp; GIA Certified</h3><p>Conflict-free natural diamonds graded for cut, clarity, and brilliance.</p></div>
+<div class="pillar"><span class="pillar-num">03</span><h3>Rare Natural Emeralds</h3><p>Hand-selected Zambian and Colombian emeralds chosen for vivid saturation.</p></div>
+<div class="pillar"><span class="pillar-num">04</span><h3>Lifetime Buyback</h3><p>Assured lifetime exchange and buyback value on all maison jewellery.</p></div>
+<div class="pillar"><span class="pillar-num">05</span><h3>Insured Delivery</h3><p>White-glove, fully insured courier dispatch across India and worldwide.</p></div>
+<div class="pillar"><span class="pillar-num">06</span><h3>Bespoke Atelier</h3><p>Master karigars crafting one-of-a-kind commissions in New Delhi since 1999.</p></div>
+</div>
+</div>
+</section>
+<section id="collections" class="sec">
+<div class="wrap">
+<div class="sec-head"><div><span class="eyebrow">Curated Chapters</span><h2>Four Collections</h2></div><p>Explore the four pillars of our maison, each conceived to honour heritage craftsmanship with contemporary restraint.</p></div>
+<div class="collections">
+<a href="#lookbook" class="col-card"><span class="col-idx">I</span><h3>Diamond</h3><p>Architectural solitaires, high-collar rivi&egrave;res, and luminous everyday heirlooms set in 18K gold.</p><span class="col-tag">Explore Chapter &rarr;</span></a>
+<a href="#lookbook" class="col-card"><span class="col-idx">II</span><h3>Emerald</h3><p>Richly saturated Zambian and Colombian emeralds framed by hand-set pav&eacute; and marquise diamonds.</p><span class="col-tag">Explore Chapter &rarr;</span></a>
+<a href="#lookbook" class="col-card"><span class="col-idx">III</span><h3>Bridal</h3><p>Ceremonial suites and heirloom chokers tailored for modern Indian trousseaus and celebrations.</p><span class="col-tag">Explore Chapter &rarr;</span></a>
+<a href="#bespoke" class="col-card"><span class="col-idx">IV</span><h3>Bespoke</h3><p>Private one-of-one commissions designed from loose gemstone selection to final setting.</p><span class="col-tag">Begin Journey &rarr;</span></a>
+</div>
+</div>
+</section>
+<section id="lookbook" class="sec">
+<div class="wrap">
+<div class="sec-head"><div><span class="eyebrow">2.5D Museum Lookbook</span><h2>Signature Emerald Pieces</h2></div><p>Move your cursor across each museum frame to experience subtle specular light, or select a piece to inspect its provenance.</p></div>
+<div class="lookbook-grid">
+<article class="look-card wide" onclick="openPiece(0)">
+<div class="look-frame"><div class="look-img-wrap"><img src="https://heartofgoldjewels.com/assets/hog-necklace-emerald-grandeur-COREZWcn.jpg" alt="Emerald Grandeur Necklace Set"><div class="sheen"></div></div>
+<div class="look-meta"><div><span>22K Gold &bull; Emerald &amp; Diamond Set</span><h3>Emerald Grandeur Necklace Set</h3></div><span class="look-more">Inspect Piece</span></div></div>
+</article>
+<article class="look-card tall" onclick="openPiece(1)">
+<div class="look-frame"><div class="look-img-wrap"><img src="https://heartofgoldjewels.com/assets/hog-earring-emerald-drop-BdMKkYSS.jpg" alt="Emerald Drop Statement Earrings"><div class="sheen"></div></div>
+<div class="look-meta"><div><span>18K Gold &bull; Emerald &amp; Diamond Drop</span><h3>Emerald Drop Statement Earrings</h3></div><span class="look-more">Inspect Piece</span></div></div>
+</article>
+<article class="look-card tall" onclick="openPiece(2)">
+<div class="look-frame"><div class="look-img-wrap"><img src="https://heartofgoldjewels.com/assets/emerald-celestial-ring-B1Rkxiue.jpg" alt="Celestial Emerald Halo Ring"><div class="sheen"></div></div>
+<div class="look-meta"><div><span>18K Gold &bull; Cushion-Cut Emerald</span><h3>Celestial Emerald Halo Ring</h3></div><span class="look-more">Inspect Piece</span></div></div>
+</article>
+<article class="look-card wide" onclick="openPiece(3)">
+<div class="look-frame"><div class="look-img-wrap"><img src="https://heartofgoldjewels.com/assets/hog-pendant-emerald-royal-Cxby4Ps-.jpg" alt="Royal Emerald Pendant Necklace"><div class="sheen"></div></div>
+<div class="look-meta"><div><span>18K Gold &bull; Emerald Halo Pendant</span><h3>Royal Emerald Pendant Necklace</h3></div><span class="look-more">Inspect Piece</span></div></div>
+</article>
+</div>
+</div>
+</section>
+<section id="bespoke" class="sec">
+<div class="wrap">
+<div class="sec-head"><div><span class="eyebrow">Atelier Commission</span><h2>The Bespoke Journey</h2></div><p>From an unmounted Zambian emerald in our New Delhi vault to an heirloom worn for generations.</p></div>
+<div class="bespoke-grid">
+<div class="salon-frame"><img src="https://heartofgoldjewels.com/assets/salon-interior-ywDT9cNO.jpg" alt="Heart of Gold Private Salon New Delhi"><div class="salon-cap">Private Salon &bull; Greater Kailash-1, New Delhi</div></div>
+<div class="steps">
+<div class="step"><span class="step-n">01</span><div><h3>Private Discovery</h3><p>Meet our senior gemologists in our GK-1 salon or via private video appointment to share your occasion and aesthetic sensibility.</p></div></div>
+<div class="step"><span class="step-n">02</span><div><h3>Gemstone Curation</h3><p>Inspect loose certified Zambian emeralds and GIA/IGI diamonds selected specifically for colour saturation, proportion, and fire.</p></div></div>
+<div class="step"><span class="step-n">03</span><div><h3>Gouache &amp; Architectural Sketch</h3><p>Review hand-rendered design studies and balanced proportions tailored to your neckline, wrist, or bridal ensemble.</p></div></div>
+<div class="step"><span class="step-n">04</span><div><h3>Wax &amp; Metal Trial</h3><p>Experience a tactile prototype fitting to refine drape, clasp ergonomics, and stone elevation before final goldsmithing.</p></div></div>
+<div class="step"><span class="step-n">05</span><div><h3>Master Karigar Setting</h3><p>Our Delhi atelier hand-forges 22K or 18K gold and sets each diamond and emerald under microscopic precision.</p></div></div>
+<div class="step"><span class="step-n">06</span><div><h3>Heirloom Presentation</h3><p>Receive your finished jewel with BIS hallmarking, independent gemological dossiers, and lifetime maison care.</p></div></div>
+</div>
+</div>
+</div>
+</section>
+<section class="quote-sec">
+<div class="wrap">
+<div class="quote-box">
+<span class="eyebrow">Patron Reflections</span>
+<p class="quote-text">&ldquo;Walking into the GK-1 salon feels like stepping into a private treasury. My emerald bridal suite was crafted with extraordinary patience&mdash;every stone, clasp, and proportion felt unmistakably personal.&rdquo;</p>
+<span class="quote-author">Neha A. &bull; New Delhi</span>
+</div>
+</div>
+</section>
+<section id="salon" class="sec">
+<div class="wrap">
+<div class="showroom-grid">
+<div class="showroom-box">
+<span class="eyebrow">Private Salon</span>
+<h2 class="serif" style="font-size:2.4rem;color:var(--gold-lt);margin-bottom:.5rem">Greater Kailash-1, New Delhi</h2>
+<p style="color:var(--muted);font-size:.9rem">We welcome private viewings, bridal trousseau consultations, and bespoke gemstone appointments.</p>
+<div class="info-list">
+<div class="info-row"><span class="info-lbl">Address</span><span class="info-val">M 73, Shop 5, M Block Market, Greater Kailash-1, New Delhi 110048</span></div>
+<div class="info-row"><span class="info-lbl">Salon Hours</span><span class="info-val">Wed&ndash;Mon 11:30&ndash;19:30 &bull; Tuesday Closed</span></div>
+<div class="info-row"><span class="info-lbl">Concierge</span><span class="info-val">+91 98111 12990</span></div>
+<div class="info-row"><span class="info-lbl">Atelier Email</span><span class="info-val">info@heartofgoldjewels.com</span></div>
+</div>
+<button class="btn-gold" onclick="openConsult('GK-1 Salon Appointment')">Book Private Consultation</button>
+</div>
+<div class="journal-box">
+<div>
+<span class="eyebrow">The Maison Journal</span>
+<h2 class="serif" style="font-size:2.4rem;color:var(--gold-lt);margin-bottom:.8rem">Dispatches from the Vault</h2>
+<p style="color:var(--muted);font-size:.9rem">Receive seasonal lookbook previews, rare emerald acquisitions, and private salon invitations in New Delhi.</p>
+<form class="journal-form" onsubmit="submitJournal(event)">
+<input id="journal-email" class="input-hair" type="email" required placeholder="Enter your email address">
+<button type="submit" class="btn-hair">Subscribe</button>
+</form>
+<div id="journal-msg" class="form-msg"></div>
+</div>
+<p style="font-size:.76rem;color:var(--muted);border-top:1px solid var(--hair);padding-top:1.4rem;margin-top:2rem">Discretion assured. Our concierge responds to all private salon inquiries within 24 hours.</p>
+</div>
+</div>
+</div>
+</section>
 </main>
-
 <footer>
-  <span>© Heart of Gold Jewels • Est. 1999 • M 73, Shop 5, M Block Market, Greater Kailash-1, New Delhi 110048</span>
-  <span>Wed–Mon 11:30–19:30 (Tue Closed) • +91 98111 12990 • info@heartofgoldjewels.com</span>
+<span>Heart of Gold Jewels &bull; Est. 1999</span>
+<span>M 73, Shop 5, M Block Market, GK-1, New Delhi 110048</span>
+<span>+91 98111 12990 &bull; info@heartofgoldjewels.com</span>
 </footer>
-
-<div class="modal-backdrop" id="piece-modal" onclick="if(event.target===this)closePieceModal()">
-  <div class="modal-panel">
-    <button class="modal-close" onclick="closePieceModal()">×</button>
-    <div class="card-tag" id="pm-cat"></div>
-    <h3 class="card-title" id="pm-title" style="font-size:2rem"></h3>
-    <p class="card-text" id="pm-desc" style="margin:0.8rem 0 1.2rem"></p>
-    <div id="pm-specs" style="border-top:1px solid var(--border);padding-top:1rem;font-size:0.82rem;color:var(--gold-light);line-height:1.8"></div>
-    <div style="margin-top:1.5rem;display:flex;gap:0.8rem">
-      <button class="btn-gold" onclick="closePieceModal();openBookingModal()">Request Private Viewing</button>
-    </div>
-  </div>
+<div id="piece-modal" class="modal" onclick="if(event.target===this)closeModal('piece-modal')">
+<div class="modal-card">
+<button class="modal-close" onclick="closeModal('piece-modal')" aria-label="Close">&times;</button>
+<div class="piece-layout">
+<img id="pm-img" src="" alt="">
+<div class="piece-body">
+<span id="pm-cat" class="eyebrow"></span>
+<h3 id="pm-title"></h3>
+<p id="pm-desc" style="color:var(--muted);font-size:.9rem"></p>
+<div class="piece-specs">
+<div><span style="color:var(--muted)">Metal</span><span id="pm-metal"></span></div>
+<div><span style="color:var(--muted)">Gemstones</span><span id="pm-stones"></span></div>
+<div><span style="color:var(--muted)">Certification</span><span>BIS &amp; IGI / GIA</span></div>
+<div><span style="color:var(--muted)">Availability</span><span>Private Salon / Bespoke</span></div>
 </div>
-
-<div class="modal-backdrop" id="booking-modal" onclick="if(event.target===this)closeBookingModal()">
-  <div class="modal-panel">
-    <button class="modal-close" onclick="closeBookingModal()">×</button>
-    <div class="card-tag">GK-1 Private Salon • Greater Kailash-1</div>
-    <h3 class="card-title" style="font-size:1.9rem;margin-bottom:0.4rem">Reserve Your Private Viewing</h3>
-    <p class="card-text" style="margin-bottom:1.2rem">M 73, Shop 5, M Block Market, GK-1 • Wed–Mon 11:30–19:30 (Tue Closed)</p>
-    <form id="salon-form" onsubmit="submitBooking(event)">
-      <div class="form-group"><label>Full Name</label><input type="text" required placeholder="e.g. Ananya Sharma" /></div>
-      <div class="form-group"><label>Phone / WhatsApp</label><input type="tel" required placeholder="+91 98..." /></div>
-      <div class="form-group"><label>Preferred Date (Wed–Mon)</label><input type="date" required /></div>
-      <div class="form-group"><label>Collection of Interest</label>
-        <select>
-          <option>Zambian Emerald Vault</option>
-          <option>Rani Mahal Polki</option>
-          <option>Nizam Heritage Kundan</option>
-          <option>Bespoke Atelier Commission</option>
-        </select>
-      </div>
-      <button type="submit" class="btn-gold" style="width:100%;margin-top:0.4rem">Confirm Salon Request</button>
-    </form>
-    <div id="booking-confirm" style="display:none;padding:1.2rem 0;color:var(--gold-light);line-height:1.6">
-      <strong>Private Viewing Requested.</strong><br/>Our GK-1 concierge will confirm your slot shortly via +91 98111 12990 or info@heartofgoldjewels.com.
-    </div>
-  </div>
+<button id="pm-cta" class="btn-gold" style="width:100%">Request Private Viewing</button>
 </div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+</div>
+</div>
+</div>
+<div id="consult-modal" class="modal" onclick="if(event.target===this)closeModal('consult-modal')">
+<div class="modal-card" style="max-width:580px">
+<button class="modal-close" onclick="closeModal('consult-modal')" aria-label="Close">&times;</button>
+<div class="consult-body">
+<span class="eyebrow">GK-1 New Delhi Salon</span>
+<h3>Private Consultation</h3>
+<p style="color:var(--muted);font-size:.88rem">Reserve an intimate appointment at M 73, Shop 5, M Block Market, Greater Kailash-1 (Wed&ndash;Mon 11:30&ndash;19:30).</p>
+<form class="field-grid" onsubmit="submitConsult(event)">
+<input id="c-name" class="input-hair" type="text" required placeholder="Full Name">
+<input id="c-contact" class="input-hair" type="text" required placeholder="Phone (+91) or Email">
+<input id="c-date" class="input-hair" type="date">
+<input id="c-interest" class="input-hair" type="text" placeholder="Piece or Collection of Interest">
+<textarea id="c-notes" class="input-hair" rows="3" placeholder="Preferred time or bespoke notes (Tuesday closed)"></textarea>
+<button type="submit" class="btn-gold">Confirm Consultation Request</button>
+</form>
+<div id="consult-msg" class="form-msg"></div>
+</div>
+</div>
+</div>
 <script>
-const MASTERPIECES=[
-  {id:1,cat:'Necklaces',title:'The Maharani Emerald Collar',desc:'Architectural 22K gold collar centered with a 14.2 ct octagonal Zambian emerald and rose-cut diamond halo.',specs:'22K Hallmarked Gold • 14.2 ct Zambian Emerald • 4.8 ct VVS Diamonds'},
-  {id:2,cat:'Bridal',title:'Nizam-e-Noor Polki Haar',desc:'Multi-tiered uncut syndicate Polki bridal necklace finished with hand-painted emerald meenakari.',specs:'22K & 24K Kundan • 32.5 ct Uncut Polki • South Sea Pearl Drops'},
-  {id:3,cat:'Earrings',title:'Jashn Emerald Chandbalis',desc:'Crescent-sculpted gold chandbalis suspending pear-cut Zambian emeralds and fine diamond fringes.',specs:'22K Gold • 9.4 ct Matched Emeralds • 2.6 ct Diamonds'},
-  {id:4,cat:'Rings',title:'Sovereign Solitaire Signet',desc:'Bezel-set step-cut emerald solitaire resting on a fluted 22K satin-brushed gold shank.',specs:'22K Brushed Gold • 5.1 ct Zambian Emerald • GIA Certified'},
-  {id:5,cat:'Bridal',title:'Aurelia Satlada Suite',desc:'Seven-strand heirloom pearl and kundan suite with detachable emerald pendant centerpiece.',specs:'22K Gold • 18.0 ct Polki & Emerald • Natural Pearl Strands'}
+const PIECES=[
+{cat:'22K Gold • Emerald & Diamond Set',title:'Emerald Grandeur Necklace Set',metal:'22K Hallmarked Gold',stones:'Zambian Emeralds & Natural Diamonds',desc:'A ceremonial collar sculpted in 22K gold with graduated Zambian emeralds and radiant diamond borders, paired with matching drops.'},
+{cat:'18K Gold • Emerald & Diamond Drop',title:'Emerald Drop Statement Earrings',metal:'18K Hallmarked Gold',stones:'Pear-Cut Emeralds & Marquise Diamonds',desc:'Fluid chandelier silhouettes balancing luminous diamond clusters with suspended, vividly saturated natural emerald drops.'},
+{cat:'18K Gold • Cushion-Cut Emerald',title:'Celestial Emerald Halo Ring',metal:'18K Hallmarked Gold',stones:'Cushion-Cut Emerald & Pavé Diamonds',desc:'A velvety cushion-cut emerald elevated in a delicate double-halo gallery of IGI-certified pavé diamonds.'},
+{cat:'18K Gold • Emerald Halo Pendant',title:'Royal Emerald Pendant Necklace',metal:'18K Hallmarked Gold',stones:'Octagonal Emerald & Brilliant Diamonds',desc:'An architectural emerald pendant suspended on a fine 18K gold chain, framed by hand-set brilliant-cut diamonds.'}
 ];
-
-function renderMasterpieces(filter){
-  const grid=document.getElementById('masterpieces-grid');
-  const items=filter==='all'?MASTERPIECES:MASTERPIECES.filter(m=>m.cat===filter);
-  grid.innerHTML=items.map(m=>`
-    <div class="tilt-card" onclick="openPieceModal(${m.id})" style="cursor:pointer">
-      <div class="card-tag">${m.cat}</div>
-      <div class="card-title">${m.title}</div>
-      <p class="card-text">${m.desc}</p>
-      <div class="masterpiece-meta"><span>Inspect Provenance</span><span>→</span></div>
-    </div>`).join('');
-  attachTiltListeners();
+function openPiece(i){
+const p=PIECES[i];
+const imgs=document.querySelectorAll('.look-img-wrap img');
+document.getElementById('pm-img').src=imgs[i]?imgs[i].src:'';
+document.getElementById('pm-img').alt=p.title;
+document.getElementById('pm-cat').textContent=p.cat;
+document.getElementById('pm-title').textContent=p.title;
+document.getElementById('pm-desc').textContent=p.desc;
+document.getElementById('pm-metal').textContent=p.metal;
+document.getElementById('pm-stones').textContent=p.stones;
+document.getElementById('pm-cta').onclick=()=>{closeModal('piece-modal');openConsult(p.title);};
+document.getElementById('piece-modal').classList.add('open');
 }
-function filterMasterpieces(cat,btn){
-  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  renderMasterpieces(cat);
+function openConsult(interest){
+document.getElementById('c-interest').value=interest||'';
+document.getElementById('consult-msg').textContent='';
+document.getElementById('consult-modal').classList.add('open');
 }
-function openPieceModal(id){
-  const m=MASTERPIECES.find(x=>x.id===id);if(!m)return;
-  document.getElementById('pm-cat').textContent=m.cat;
-  document.getElementById('pm-title').textContent=m.title;
-  document.getElementById('pm-desc').textContent=m.desc;
-  document.getElementById('pm-specs').textContent=m.specs;
-  document.getElementById('piece-modal').classList.add('open');
+function closeModal(id){document.getElementById(id).classList.remove('open');}
+function submitConsult(e){
+e.preventDefault();
+const name=document.getElementById('c-name').value.trim();
+document.getElementById('consult-msg').textContent='Thank you, '+name+'. Our GK-1 salon concierge will contact you shortly to confirm your private viewing.';
+e.target.reset();
 }
-function closePieceModal(){document.getElementById('piece-modal').classList.remove('open');}
-function openBookingModal(){
-  document.getElementById('salon-form').style.display='block';
-  document.getElementById('booking-confirm').style.display='none';
-  document.getElementById('booking-modal').classList.add('open');
+function submitJournal(e){
+e.preventDefault();
+const em=document.getElementById('journal-email').value.trim();
+document.getElementById('journal-msg').textContent='Welcome to the Maison Journal, '+em+'.';
+e.target.reset();
 }
-function closeBookingModal(){document.getElementById('booking-modal').classList.remove('open');}
-function submitBooking(e){
-  e.preventDefault();
-  document.getElementById('salon-form').style.display='none';
-  document.getElementById('booking-confirm').style.display='block';
-}
-
-function attachTiltListeners(){
-  document.querySelectorAll('.tilt-card').forEach(card=>{
-    if(card.dataset.tiltBound)return;
-    card.dataset.tiltBound='1';
-    card.addEventListener('mousemove',e=>{
-      const r=card.getBoundingClientRect();
-      const x=(e.clientX-r.left)/r.width;
-      const y=(e.clientY-r.top)/r.height;
-      const rx=(0.5-y)*10, ry=(x-0.5)*12;
-      card.style.transform=`perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(6px)`;
-      card.style.setProperty('--mx',`${x*100}%`);
-      card.style.setProperty('--my',`${y*100}%`);
-    });
-    card.addEventListener('mouseleave',()=>{
-      card.style.transform='perspective(900px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
-    });
-  });
-}
-renderMasterpieces('all');
-attachTiltListeners();
-
-let lenis=null;
-if(typeof Lenis!=='undefined'){
-  lenis=new Lenis({duration:1.35,easing:t=>Math.min(1,1.001-Math.pow(2,-10*t)),smoothWheel:true});
-  function raf(time){lenis.raf(time);requestAnimationFrame(raf);}
-  requestAnimationFrame(raf);
-}
-function scrollToRoom(idx){
-  const el=document.getElementById(`room-${idx}`);
-  if(!el)return;
-  if(lenis)lenis.scrollTo(el);else el.scrollIntoView({behavior:'smooth'});
-}
-
-const canvas=document.getElementById('webgl-canvas');
-const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:false,powerPreference:'high-performance'});
-renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
-renderer.setSize(window.innerWidth,window.innerHeight);
-renderer.toneMapping=THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure=1.25;
-
-const scene=new THREE.Scene();
-const camera=new THREE.PerspectiveCamera(45,window.innerWidth/window.innerHeight,0.1,100);
-camera.position.set(0,0,7.5);
-
-const pmrem=new THREE.PMREMGenerator(renderer);
-const envScene=new THREE.Scene();
-envScene.background=new THREE.Color(0x04150d);
-const envLight1=new THREE.Mesh(new THREE.PlaneGeometry(10,10),new THREE.MeshBasicMaterial({color:0xffe49e,side:THREE.DoubleSide}));
-envLight1.position.set(5,5,5);envLight1.lookAt(0,0,0);envScene.add(envLight1);
-const envLight2=new THREE.Mesh(new THREE.PlaneGeometry(8,8),new THREE.MeshBasicMaterial({color:0x0f8a52,side:THREE.DoubleSide}));
-envLight2.position.set(-5,-3,4);envLight2.lookAt(0,0,0);envScene.add(envLight2);
-const envRT=pmrem.fromScene(envScene,0.04);
-scene.environment=envRT.texture;
-pmrem.dispose();
-
-const causticUniforms={uTime:{value:0},uMouse:{value:new THREE.Vector2(0.5,0.5)},uRes:{value:new THREE.Vector2(window.innerWidth,window.innerHeight)}};
-const causticMat=new THREE.ShaderMaterial({
-  uniforms:causticUniforms,
-  depthWrite:false,
-  vertexShader:`varying vec2 vUv;void main(){vUv=uv;gl_Position=vec4(position,1.0);}`,
-  fragmentShader:`
-    precision highp float;
-    varying vec2 vUv;
-    uniform float uTime;
-    uniform vec2 uMouse;
-    void main(){
-      vec2 p=(vUv-0.5)*3.2;
-      vec2 m=(uMouse-0.5)*1.4;
-      float t=uTime*0.25;
-      float c1=sin(p.x*2.4+t+cos(p.y*2.1-t+m.x));
-      float c2=cos(p.y*2.7-t+sin(p.x*2.3+t+m.y));
-      float caustic=pow(abs(c1*c2),1.8);
-      vec3 deepEmerald=vec3(0.015,0.068,0.042);
-      vec3 emeraldGlow=vec3(0.04,0.28,0.16);
-      vec3 goldShimmer=vec3(0.85,0.68,0.22);
-      float dist=length(vUv-uMouse);
-      float cursorGlow=smoothstep(0.65,0.0,dist)*0.35;
-      vec3 col=mix(deepEmerald,emeraldGlow,caustic*0.75);
-      col+=goldShimmer*(pow(caustic,3.2)*0.45+cursorGlow*0.55);
-      gl_FragColor=vec4(col,1.0);
-    }`
-});
-const bgQuad=new THREE.Mesh(new THREE.PlaneGeometry(2,2),causticMat);
-bgQuad.renderOrder=-1;
-scene.add(bgQuad);
-
-const sculpture=new THREE.Group();
-const emeraldMat=new THREE.MeshPhysicalMaterial({
-  color:0x065c36,emissive:0x021a0e,metalness:0.08,roughness:0.06,
-  clearcoat:1.0,clearcoatRoughness:0.04,reflectivity:1.0,flatShading:true
-});
-const emeraldCore=new THREE.Mesh(new THREE.OctahedronGeometry(1.35,1),emeraldMat);
-sculpture.add(emeraldCore);
-
-const goldMat=new THREE.MeshStandardMaterial({color:0xe5bd52,metalness:0.96,roughness:0.16,envMapIntensity:1.5});
-const ring1=new THREE.Mesh(new THREE.TorusGeometry(1.95,0.035,16,120),goldMat);
-ring1.rotation.x=Math.PI/3;
-const ring2=new THREE.Mesh(new THREE.TorusGeometry(2.35,0.025,16,120),goldMat);
-ring2.rotation.y=Math.PI/4;
-const cage=new THREE.Mesh(new THREE.IcosahedronGeometry(1.68,0),new THREE.MeshStandardMaterial({color:0xd4af37,metalness:0.95,roughness:0.2,wireframe:true}));
-sculpture.add(ring1,ring2,cage);
-sculpture.position.set(1.6,0,0);
-scene.add(sculpture);
-
-const ambient=new THREE.AmbientLight(0x16422c,1.1);
-const keyLight=new THREE.DirectionalLight(0xfff0c2,1.6);
-keyLight.position.set(4,6,5);
-const cursorLight=new THREE.PointLight(0xffd269,3.2,14);
-cursorLight.position.set(0,0,4.5);
-scene.add(ambient,keyLight,cursorLight);
-
-const mouse={x:0.5,y:0.5,tx:0.5,ty:0.5};
+const aura=document.getElementById('cursor-aura');
+const heroImg=document.getElementById('hero-img');
 window.addEventListener('mousemove',e=>{
-  mouse.tx=e.clientX/window.innerWidth;
-  mouse.ty=1.0-(e.clientY/window.innerHeight);
+aura.style.left=e.clientX+'px';
+aura.style.top=e.clientY+'px';
+const nx=(e.clientX/window.innerWidth-0.5)*2;
+const ny=(e.clientY/window.innerHeight-0.5)*2;
+if(heroImg)heroImg.style.transform='translate3d('+(-nx*16)+'px,'+(-ny*12)+'px,0) scale(1.07)';
 });
-
-const rooms=[
-  {cam:[0,0,7.5],sc:[1.7,0,0]},
-  {cam:[-1.2,0.4,6.4],sc:[2.1,-0.2,-0.5]},
-  {cam:[1.0,-0.3,5.8],sc:[-2.0,0.2,0]},
-  {cam:[-0.6,0.6,6.8],sc:[1.9,-0.3,0.4]},
-  {cam:[0,0,6.2],sc:[1.8,0.1,0]}
-];
-const dots=document.querySelectorAll('.room-dot');
-let scrollProg=0;
-function updateScrollState(){
-  const maxScroll=Math.max(1,document.documentElement.scrollHeight-window.innerHeight);
-  scrollProg=Math.min(1,Math.max(0,window.scrollY/maxScroll));
-  const activeIdx=Math.min(4,Math.round(scrollProg*4));
-  dots.forEach((d,i)=>d.classList.toggle('active',i===activeIdx));
-}
-window.addEventListener('scroll',updateScrollState,{passive:true});
-
-window.addEventListener('resize',()=>{
-  camera.aspect=window.innerWidth/window.innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth,window.innerHeight);
-  causticUniforms.uRes.value.set(window.innerWidth,window.innerHeight);
+document.querySelectorAll('.look-card').forEach(card=>{
+const frame=card.querySelector('.look-frame');
+const sheen=card.querySelector('.sheen');
+card.addEventListener('mousemove',e=>{
+const r=card.getBoundingClientRect();
+const x=(e.clientX-r.left)/r.width;
+const y=(e.clientY-r.top)/r.height;
+const rx=(0.5-y)*8;
+const ry=(x-0.5)*8;
+frame.style.transform='rotateX('+rx+'deg) rotateY('+ry+'deg)';
+sheen.style.setProperty('--mx',(x*100)+'%');
+sheen.style.setProperty('--my',(y*100)+'%');
 });
-
-const clock=new THREE.Clock();
-function animate(){
-  requestAnimationFrame(animate);
-  const t=clock.getElapsedTime();
-  causticUniforms.uTime.value=t;
-  mouse.x+=(mouse.tx-mouse.x)*0.07;
-  mouse.y+=(mouse.ty-mouse.y)*0.07;
-  causticUniforms.uMouse.value.set(mouse.x,mouse.y);
-
-  cursorLight.position.x=(mouse.x-0.5)*10;
-  cursorLight.position.y=(mouse.y-0.5)*7;
-
-  const fIdx=scrollProg*4;
-  const i0=Math.min(3,Math.floor(fIdx));
-  const f=fIdx-i0;
-  const r0=rooms[i0],r1=rooms[i0+1];
-  camera.position.x+=(THREE.MathUtils.lerp(r0.cam[0],r1.cam[0],f)+(mouse.x-0.5)*0.55-camera.position.x)*0.05;
-  camera.position.y+=(THREE.MathUtils.lerp(r0.cam[1],r1.cam[1],f)+(mouse.y-0.5)*0.35-camera.position.y)*0.05;
-  camera.position.z+=(THREE.MathUtils.lerp(r0.cam[2],r1.cam[2],f)-camera.position.z)*0.05;
-  camera.lookAt(0,0,0);
-
-  sculpture.position.x+=(THREE.MathUtils.lerp(r0.sc[0],r1.sc[0],f)-sculpture.position.x)*0.05;
-  sculpture.position.y=Math.sin(t*0.9)*0.18+THREE.MathUtils.lerp(r0.sc[1],r1.sc[1],f);
-  sculpture.rotation.y=t*0.25+(mouse.x-0.5)*0.9+scrollProg*Math.PI*2;
-  sculpture.rotation.x=(mouse.y-0.5)*0.5+Math.sin(t*0.5)*0.12;
-  ring1.rotation.z=t*0.35;
-  ring2.rotation.x=-t*0.28;
-
-  renderer.render(scene,camera);
+card.addEventListener('mouseleave',()=>{frame.style.transform='rotateX(0deg) rotateY(0deg)';});
+});
+const cvs=document.getElementById('dust-canvas'),ctx=cvs.getContext('2d');
+let W,H,pts=[];
+function resize(){W=cvs.width=window.innerWidth;H=cvs.height=window.innerHeight;}
+window.addEventListener('resize',resize);resize();
+for(let i=0;i<55;i++)pts.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.6+0.4,vx:(Math.random()-0.5)*0.18,vy:-Math.random()*0.25-0.06,a:Math.random()*0.45+0.1});
+function tick(){
+ctx.clearRect(0,0,W,H);
+for(const p of pts){
+p.x+=p.vx;p.y+=p.vy;
+if(p.y<-10){p.y=H+10;p.x=Math.random()*W;}
+if(p.x<0)p.x=W;if(p.x>W)p.x=0;
+ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+ctx.fillStyle='rgba(243,229,171,'+p.a+')';ctx.fill();
 }
-animate();
-</script>
-</body>
-</html>
+requestAnimationFrame(tick);
+}
+tick();
+</script></body></html>
